@@ -1,0 +1,77 @@
+html {
+    font-size: 16px;
+    box-sizing: border-box;
+
+    // Typography
+    @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap');
+    @import url('https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined');
+    @import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+    $fa-font-path: '../webfonts';
+
+    &.transition,
+    &.transition *,
+    &.transition *:before,
+    &.transition *:after {
+        transition: all 0.5s !important;
+        transition-delay: 0s !important;
+    }
+
+    body {
+        margin: 0;
+        padding: 0 !important;
+        height: 100%;
+        font-family: 'Nunito Sans', sans-serif;
+    }
+
+    // Colors
+    $blue: #3490dc;
+    $indigo: #6574cd;
+    $purple: #9561e2;
+    $pink: #f66D9b;
+    $red: #e3342f;
+    $orange: #f6993f;
+    $yellow: #ffed4a;
+    $green: #38c172;
+    $teal: #4dc0b5;
+    $cyan: #6cb2eb;
+
+    $black: #000;
+    $white: #fff;
+
+    //Transitions
+    $transition-fast: all 0.2s ease-in-out;
+    $transition-mid: all 0.35s ease-in-out;
+    $transition-slow: all 0.5s ease-in-out;
+
+    //Shadows
+    $small-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.175);
+
+    @import "mixins";
+
+    &[data-theme='light'] {
+        //Fonts
+        $primary-font: #232323;
+        $secondary-font: #434343;
+
+        //Backgrounds
+        $bg: #fff;
+        $accent: yellow;
+
+        //Layouts
+        @import "main";
+    }
+
+    &[data-theme='dark'] {
+        //Fonts
+        $primary-font: #efefef;
+        $secondary-font: #dfdfdf;
+
+        //Backgrounds
+        $bg: #353535;
+        $accent: yellow;
+
+        //Layouts
+        @import "main";
+    }
+}

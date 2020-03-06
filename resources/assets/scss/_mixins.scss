@@ -1,0 +1,16 @@
+@mixin btnDef {
+    border: none;
+    cursor: pointer;
+    &:active, &:focus{
+        outline: none;
+    }
+}
+
+@mixin spongy($amount) {
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+    &:active{
+        transition: all 0.1s ease-in-out;
+        transform: scale($amount);
+    }
+}

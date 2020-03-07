@@ -96,6 +96,32 @@ const scrollFunction = () => {
 };
 
 // -----------------------------------------
+//             MOBILE NAV TOGGLE
+// -----------------------------------------
+const navOpenBtn = document.querySelector('.navigation-toggle-btn');
+const navCloseBtn = document.querySelector('.navigation-links-mobile-header-action-btn');
+const mobileNav = document.querySelector('.navigation-links');
+
+const openMobileNav = () => {
+    mobileNav.classList.add('active');
+    document.body.style.overflowY = 'hidden';
+};
+
+const closeMobileNav = () => {
+    mobileNav.classList.remove('active');
+    document.body.style.overflowY = 'unset';
+};
+
+navOpenBtn.addEventListener('click', openMobileNav);
+navCloseBtn.addEventListener('click', closeMobileNav);
+window.addEventListener('resize', () => {
+    if (mobileNav.classList.contains('active') && window.innerWidth > 1100){
+        closeMobileNav();
+    }
+});
+
+
+// -----------------------------------------
 //             BACK TO TOP
 // -----------------------------------------
 const top = document.getElementById('to-top');

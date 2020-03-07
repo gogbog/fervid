@@ -1,87 +1,111 @@
-.preloader{
-    transition: $transition-fast;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 99999;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background: $bg;
-    &.show{
-        transition: $transition-fast;
-        opacity: 1;
-    }
-}
+@import "loaders";
 
-.page-loader{
-    transition: $transition-slow;
-    opacity: 1;
-    pointer-events: none;
+.nav {
     z-index: 999999;
     position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
     right: 0;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
     background: $bg;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: $primary-font;
-    &.loaded{
-        transition: $transition-slow;
-        opacity: 0;
-    }
-}
 
-.nav{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: $bg;
-    color: $primary-font;
-    &igation{
+    &igation {
         transition: $transition-mid;
         display: flex;
         align-items: center;
         justify-content: flex-start;
         padding: 2.5rem 1rem;
-        &-logo{
+
+        &-logo {
             flex: 0 0 5rem;
-            &-img{
+
+            &-img {
 
             }
         }
-        &-links{
+
+        &-toggle {
+            display: none;
             flex: 1;
-            &-list{
+            justify-content: flex-end;
+            align-items: center;
+            &-btn{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                background: none;
+                border: none;
+                cursor: pointer;
+                &:focus, &:active{
+                    outline: none;
+                }
+                .line{
+                    flex: 0 1 100%;
+                    width: 0.5rem;
+                    height: 0.125rem;
+                    background: $primary-font;
+                    margin: 0.15rem 0;
+                }
+            }
+        }
+
+        &-links {
+            flex: 1;
+
+            &-mobile-header {
+                display: none;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 1.5rem 1rem;
+
+                &-logo {
+                    flex: 1;
+
+                    &-img {
+
+                    }
+                }
+
+                &-action {
+                    &-btn {
+                        background: none;
+                        border: none;
+                        &:focus, &:active{
+                            outline: none;
+                        }
+                        i{
+                            color: $primary-font;
+                            font-weight: 100;
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+            }
+
+            &-list {
                 padding: 0;
                 margin: 0;
                 list-style-type: none;
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
-                &-item{
+
+                &-item {
                     margin: 0 1rem;
-                    & > a{
+
+                    & > a {
                         transition: $transition-fast;
                         color: $secondary-font;
                         font-weight: 400;
                         text-decoration: none;
-                        &:hover{
+
+                        &:hover {
                             transition: $transition-fast;
                             color: $primary-font;
                         }
-                        &.active{
+
+                        &.active {
                             transition: $transition-fast;
                             font-weight: 600;
                             color: $primary-font;
@@ -91,29 +115,83 @@
             }
         }
     }
-    &.scrolled{
-        .navigation{
+
+    &.scrolled {
+        .navigation {
             transition: $transition-mid;
             padding: 1.5rem 1rem;
         }
     }
+
+    @media screen and (max-width: 1100px) {
+        &igation {
+            padding: 1.5rem 1rem;
+
+            &-toggle {
+                display: flex;
+            }
+
+            &-links {
+                transition: $transition-mid;
+                transform: translateX(110%);
+                overflow: hidden;
+                overflow-y: auto;
+                position: fixed;
+                z-index: 9999999;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 100vh;
+                width: 100%;
+                background: $bg;
+                padding: 0;
+
+                &-mobile-header {
+                    display: flex;
+                }
+
+                &-list {
+                    padding: 3rem 0;
+                    margin: 0;
+                    list-style-type: none;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    flex-wrap: wrap;
+
+                    &-item {
+                        flex: 0 1 100%;
+                        margin: 0;
+                        padding: 1rem 2rem;
+
+                        & > a {
+                            font-weight: 400;
+                            font-size: 1.25rem;
+                        }
+                    }
+                }
+
+                &.active {
+                    transition: $transition-mid;
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
 }
 
-.content{
-    padding: 7.5rem 1rem;
-    background: $bg;
-    color: $primary-font;
-    height: 200vh;
-}
+@import "content";
 
-.back-to-top{
+.back-to-top {
     z-index: 9999;
     transition: $transition-mid;
     position: fixed;
     bottom: 6rem;
     right: 2rem;
     transform: translateX(10rem);
-    #to-top{
+
+    #to-top {
         @include btnDef();
         @include spongy(0.95);
         width: 3rem;
@@ -121,33 +199,46 @@
         border-radius: 50%;
         background: $accent;
         box-shadow: $small-shadow;
+
         & > i {
             color: $black;
             font-size: 1.5rem;
         }
     }
-    &.show{
+
+    &.show {
         transition: $transition-mid;
         transform: translateX(0);
     }
+
+    @media screen and (max-width: 1100px) {
+        right: 0;
+        bottom: 5rem;
+        #to-top {
+            border-radius: 50% 0 0 50%;
+        }
+    }
 }
 
-#theme-switch{
-    display: none;
-}
-
-.theme{
+.theme {
     z-index: 9999;
+    transition: $transition-mid;
     position: fixed;
     bottom: 2rem;
     right: 2rem;
+
+    #theme-switch {
+        display: none;
+    }
+
     #theme-switch {
         display: none;
         pointer-events: none;
 
         & + .theme-label {
             cursor: pointer;
-            .theme-label-inner{
+
+            .theme-label-inner {
                 @include spongy(0.95);
                 display: flex;
                 justify-content: center;
@@ -157,15 +248,18 @@
                 height: 3rem;
                 border-radius: 50%;
                 box-shadow: $small-shadow;
-                .theme-icon{
+
+                .theme-icon {
                     color: $bg;
                     font-size: 1.5rem;
                     user-select: none;
                 }
-                .dark-mode{
+
+                .dark-mode {
                     display: block;
                 }
-                .light-mode{
+
+                .light-mode {
                     display: none;
                 }
             }
@@ -173,47 +267,66 @@
         }
 
         &:checked + .theme-label {
-            .theme-label-inner{
-                .dark-mode{
+            .theme-label-inner {
+                .dark-mode {
                     display: none;
                 }
-                .light-mode{
+
+                .light-mode {
                     display: block;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 1100px) {
+        right: 0;
+        bottom: 1rem;
+        #theme-switch {
+            & + .theme-label {
+                .theme-label-inner {
+                    border-radius: 50% 0 0 50%;
                 }
             }
         }
     }
 }
 
-.footer{
+.footer {
     padding: 3rem 1rem 0 1rem;
     background: $black;
     color: $white;
-    &-logo{
-        &-img{
+
+    &-logo {
+        &-img {
 
         }
-        &-brand{
+
+        &-brand {
 
         }
     }
-    &-links{
+
+    &-links {
         padding: 2.5rem 0;
-        &-list{
+
+        &-list {
             padding: 0;
             margin: 0;
             list-style-type: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            &-item{
+
+            &-item {
                 margin: 0 1rem;
-                & > a{
+
+                & > a {
                     transition: $transition-fast;
                     color: $white;
                     font-weight: 400;
                     text-decoration: none;
-                    &.active{
+
+                    &.active {
                         transition: $transition-fast;
                         font-weight: 600;
                     }
@@ -221,26 +334,32 @@
             }
         }
     }
-    &-social{
+
+    &-social {
         display: flex;
         justify-content: center;
         align-items: center;
-        &-item{
+
+        &-item {
             margin: 0 1.25rem;
-            & > a{
+
+            & > a {
                 color: $white;
                 text-decoration: none;
-                & > i{
+
+                & > i {
                     font-size: 1.5rem;
                 }
             }
         }
     }
-    &-copyright{
+
+    &-copyright {
         display: flex;
         align-items: center;
         justify-content: center;
-        &-created{
+
+        &-created {
             text-align: center;
             opacity: 0.6;
             font-weight: 300;
@@ -248,11 +367,24 @@
             padding: 2.5rem 0;
         }
     }
+
+    @media screen and (max-width: 1100px) {
+        padding: 3rem 1rem 7.5rem 1rem;
+
+        &-links {
+            padding: 2.5rem 0;
+
+            &-list {
+                flex-wrap: wrap;
+
+                &-item {
+                    flex: 0 1 100%;
+                    margin: 1rem;
+                    text-align: center;
+                }
+            }
+        }
+    }
 }
 
-.container{
-    margin: 0 auto;
-    width: 100%;
-    min-width: 0;
-    max-width: 100rem;
-}
+@import "helpers";

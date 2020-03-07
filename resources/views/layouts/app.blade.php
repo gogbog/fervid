@@ -28,6 +28,7 @@
 @php
     $facebook = \Charlotte\Administration\Helpers\Settings::get('facebook');
     $instagram = \Charlotte\Administration\Helpers\Settings::get('instagram');
+    $linkedin = \Charlotte\Administration\Helpers\Settings::get('linkedin');
 @endphp
 <nav class="nav">
     <div class="container">
@@ -35,7 +36,26 @@
             <div class="navigation-logo">
                 <img src="#" alt="{{ config('app.name', 'Fervid') }}" class="navigation-logo-img">
             </div>
+            <div class="navigation-toggle">
+                <button class="navigation-toggle-btn">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </button>
+            </div>
             <div class="navigation-links">
+                <div class="navigation-links-mobile-header">
+                    <div class="navigation-links-mobile-header-logo">
+                        <img src="#" alt="{{ config('app.name', 'Fervid') }}" class="navigation-links-mobile-header-logo-img">
+                    </div>
+                    <div class="navigation-links-mobile-header-action">
+                        <button class="navigation-links-mobile-header-action-btn">
+                            <i class="material-icons-outlined">
+                                close
+                            </i>
+                        </button>
+                    </div>
+                </div>
                 <ul class="navigation-links-list">
                     <li class="navigation-links-list-item">
                         <a href="{{ url('/') }}" class="redirect {{Route::currentRouteName('projects') ? 'active' : ''}}">Projects</a>
@@ -140,6 +160,13 @@
                 <div class="footer-social-item">
                     <a href="{{$facebook}}">
                         <i class="fab fa-facebook-square"></i>
+                    </a>
+                </div>
+            @endif
+            @if($linkedin)
+                <div class="footer-social-item">
+                    <a href="{{$linkedin}}">
+                        <i class="fab fa-linkedin-square"></i>
                     </a>
                 </div>
             @endif

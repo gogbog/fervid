@@ -33,13 +33,14 @@ const pageLoader = document.querySelector('.page-loader');
 
 document.addEventListener('DOMContentLoaded', () => {
     preloader.classList.remove('show');
-    setTimeout(() => pageLoader.classList.add('loaded'), 300);
+    setTimeout(() => pageLoader.classList.add('loaded'), 500);
 });
 
 // -----------------------------------------
 //             THEME CHANGE
 // -----------------------------------------
 const checkbox = document.querySelector('#theme-switch');
+const logos = document.querySelectorAll('.logo-img');
 
 if (document.body.contains(checkbox)) {
     window.addEventListener('load', () => {
@@ -55,6 +56,13 @@ if (document.body.contains(checkbox)) {
         if (e.target.checked) {
             trans();
             document.documentElement.setAttribute('data-theme', 'dark');
+            logos.forEach((item) => {
+                if (item.classList.contains('light-logo')){
+                    item.classList.add('visible');
+                }else {
+                    item.classList.remove('visible');
+                }
+            });
             let date = new Date();
             date.setTime(date.getTime() + (3600 * 1000 * 24 * 365 * 10));
             let expires = 'expires=' + date.toUTCString();
@@ -62,6 +70,13 @@ if (document.body.contains(checkbox)) {
         } else {
             trans();
             document.documentElement.setAttribute('data-theme', 'light');
+            logos.forEach((item) => {
+                if (item.classList.contains('dark-logo')){
+                    item.classList.add('visible');
+                }else {
+                    item.classList.remove('visible');
+                }
+            });
             let date = new Date();
             date.setTime(date.getTime() + (3600 * 1000 * 24 * 365 * 10));
             let expires = 'expires=' + date.toUTCString();

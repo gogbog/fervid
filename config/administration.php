@@ -54,17 +54,21 @@ return [
             'title' => 'index::admin.facebook',  //this will be converted to trans
             'type' => 'text'
         ],
-        'telegram' => [
-            'title' => 'index::admin.telegram',  //this will be converted to trans
-            'type' => 'text'
-        ],
-        'twitter' => [
-            'title' => 'index::admin.twitter',  //this will be converted to trans
+        'linkedin' => [
+            'title' => 'index::admin.linkedin',  //this will be converted to trans
             'type' => 'text'
         ],
         'instagram' => [
             'title' => 'index::admin.instagram',  //this will be converted to trans
             'type' => 'text'
-        ]
+        ],
+        'logo' => [
+            'title' => 'index::admin.logo',  //this will be converted to trans
+            'type' => 'file'
+        ],
+        'brand_logo' => [
+            'title' => 'index::admin.brand_logo',  //this will be converted to trans
+            'type' => 'file'
+        ],
     ]
 ];

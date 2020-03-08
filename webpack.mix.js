@@ -15,6 +15,7 @@ mix.webpackConfig({
 mix.js('resources/assets/js/app.js', 'public/js/app.js')
     .sass('resources/assets/scss/app.scss', 'public/css/app.css')
     .copy('resources/assets/img', 'public/img', true)
+    .copy('resources/assets/webfonts', 'public/webfonts', true)
     .version()
     .options({
         processCssUrls: false

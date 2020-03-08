@@ -62,8 +62,12 @@ return [
             'title' => 'index::admin.instagram',  //this will be converted to trans
             'type' => 'text'
         ],
-        'logo' => [
-            'title' => 'index::admin.logo',  //this will be converted to trans
+        'logo_light' => [
+            'title' => 'index::admin.logo_light',  //this will be converted to trans
+            'type' => 'file'
+        ],
+        'logo_dark' => [
+            'title' => 'index::admin.logo_dark',  //this will be converted to trans
             'type' => 'file'
         ],
         'brand_logo' => [

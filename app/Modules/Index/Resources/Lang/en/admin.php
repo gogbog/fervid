@@ -12,6 +12,7 @@ return [
     'meta_title' => 'Meta Title',
     'meta_description' => 'Meta description',
     'meta_keywords' => 'Meta keywords',
-    'logo' => 'Logo',
+    'logo_light' => 'Logo (Light)',
+    'logo_dark' => 'Logo (Dark)',
     'brand_logo' => 'Brand Logo'
 ];

@@ -81,6 +81,7 @@
                     &-btn {
                         background: none;
                         border: none;
+                        cursor: pointer;
 
                         &:focus, &:active {
                             outline: none;
@@ -122,6 +123,9 @@
                             font-weight: 600;
                             color: $primary-font;
                         }
+                    }
+                    &:last-child{
+                        margin: 0 0 0 1rem;
                     }
                 }
             }
@@ -189,6 +193,10 @@
                         & > a {
                             font-weight: 400;
                             font-size: 1.25rem;
+                        }
+
+                        &:last-child{
+                            margin: 0;
                         }
                     }
                 }

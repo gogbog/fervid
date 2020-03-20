@@ -30,6 +30,7 @@
     $brand_logo = \Charlotte\Administration\Helpers\Settings::getFile('brand_logo');
 @endphp
 <div class="preloader"></div>
+
 <div class="page-loader">
     <div class="page-loader-item">
         <img src="{{$logo_light ? $logo_light : '/img/fervid_logo_light.svg'}}"
@@ -40,6 +41,7 @@
              class="load-img logo-img dark-logo {{ !$isDark ? 'visible' : '' }}">
     </div>
 </div>
+
 <nav class="nav">
     <div class="container">
         <div class="navigation">

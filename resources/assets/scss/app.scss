@@ -4,10 +4,14 @@ html {
 
     // Typography
     @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,500,600,700,800,900&display=swap');
     @import url('https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined');
     @import "~@fortawesome/fontawesome-free/css/all.min.css";
+    @import "~aos/dist/aos.css";
 
     $fa-font-path: '../webfonts';
+
+    $fancy-font: 'Playfair Display', serif;
 
     &.transition,
     &.transition *,

@@ -21,7 +21,7 @@ const links = document.querySelectorAll('.redirect');
 for (let i = 0; i < links.length; i++) {
     links[i].addEventListener('click', (e) => {
         e.preventDefault();
-        const url = e.target.href;
+        const url = links[i].href;
         preloader.classList.add('show');
         setTimeout(() => {
             window.location.href = url;

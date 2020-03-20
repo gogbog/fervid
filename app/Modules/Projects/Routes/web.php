@@ -11,14 +11,18 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
-
 Route::group([
-    'as' => 'index.'
+    'prefix' => 'projects',
+    'as' => 'projects.'
 ], function () {
 
     Route::get('/', [
         'as' => 'index',
-        'uses' => 'IndexController@index'
+        'uses' => 'ProjectsController@index'
+    ]);
+
+    Route::get('/{project_id}', [
+        'as' => 'view',
+        'uses' => 'ProjectsController@view'
     ]);
 });

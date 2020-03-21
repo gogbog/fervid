@@ -8,15 +8,13 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
-{
+class AppServiceProvider extends ServiceProvider {
     /**
      * Register any application services.
      *
      * @return void
      */
-    public function register()
-    {
+    public function register() {
         $this->bindOrFail(Project::class, 'project');
     }
 
@@ -25,8 +23,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         //
 
     }
@@ -39,13 +36,8 @@ class AppServiceProvider extends ServiceProvider
                 return $model_id;
             }
 
-            try {
-                $class = new $class;
-                $model = ($class)->findOrFail($model_id);
-            } catch (ModelNotFoundException $exception) {
-                throw new HttpResponseException(response()->json(['errors' => ['Resource not found.']
-                ], JsonResponse::HTTP_BAD_REQUEST));
-            }
+            $class = new $class;
+            $model = ($class)->findOrFail($model_id);
 
             return $model;
         });

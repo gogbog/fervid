@@ -34,6 +34,7 @@ class ProjectsController extends BaseAdministrationController {
         $columns = [
             'id' => ['title' => trans('projects::admin.id')],
             'title' => ['title' => trans('projects::admin.title')],
+//            'description' => ['title' => trans('projects::admin.description')],
             'active' => ['title' => trans('projects::admin.visible')],
             'action' => ['title' => trans('projects::admin.action')]
         ];
@@ -45,6 +46,8 @@ class ProjectsController extends BaseAdministrationController {
         $table->addColumn('active', function ($article) {
             return AdministrationField::switch('active', $article);
         });
+
+
         $table->addColumn('action', function ($article) {
             $action = AdministrationField::edit(Administration::route('projects.edit', $article->id));
 
@@ -154,11 +157,23 @@ class ProjectsController extends BaseAdministrationController {
      * @param Project $project
      * @param StoreProjectRequest $request
      * @return Response
+     * @throws DiskDoesNotExist
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
      */
     public function update(Project $project, StoreProjectRequest $request) {
 
         $project->fill($request->validated());
         $project->save();
+
+        if (!empty($request->file)) {
+            //delete all previous media
+            $old_media = $project->getMedia();
+            foreach ($old_media as $image) {
+                $image->delete();
+            }
+            $project->addMedia($request->file)->toMediaCollection();
+        }
 
         return redirect(Administration::route('projects.index'))->withSuccess([trans('administration::admin.success_update')]);
     }

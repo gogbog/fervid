@@ -21,7 +21,7 @@ Route::group([
         'uses' => 'ProjectsController@index'
     ]);
 
-    Route::get('/{project_id}', [
+    Route::get('/{project}', [
         'as' => 'view',
         'uses' => 'ProjectsController@view'
     ]);

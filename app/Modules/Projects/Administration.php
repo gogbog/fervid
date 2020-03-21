@@ -52,6 +52,10 @@ class Administration implements Structure {
 
         ]);
 
+        $form->add($module . '_header', 'file', [
+            'title' => trans('projects::admin.header_image'),
+            'model' => $form_model
+        ]);
 
     }
 }

@@ -16,5 +16,6 @@ return [
     'email' => 'Email',
     'article_id' => 'Article',
     'active' => 'Active',
-    'file' => 'Image'
+    'file' => 'Image',
+    'header_image' => "Header Image"
 ];

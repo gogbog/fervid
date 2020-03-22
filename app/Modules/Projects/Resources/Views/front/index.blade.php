@@ -2,6 +2,10 @@
 
 @section('title', 'Projects')
 
+@php
+    $placeholder = \Charlotte\Administration\Helpers\Settings::getFile('projects_header');
+@endphp
+
 @section('content')
 
     <div class="page">
@@ -12,7 +16,15 @@
             </div>
 
             <div class="page-header-show">
-                <img src="#" alt="{{ config('app.name', 'Fervid') }}" class="page-header-show-img">
+                @if($placeholder)
+                    <img src="{{$placeholder}}"
+                         alt="{{ config('app.name', 'Fervid') }}"
+                         class="page-header-show-img">
+                @else
+                    <img src="{{asset('/img/fervid_full_logo.svg')}}"
+                         alt="{{ config('app.name', 'Fervid') }}"
+                         class="page-header-show-img">
+                @endif
             </div>
 
         </section>
@@ -31,77 +43,28 @@
         </section>
 
         <section class="projects">
-            <div class="projects-item top-bigger" data-aos="zoom-in" data-aos-duration="350">
-                <div class="projects-item-img-container">
-                    <a href="{{ url('/') }}" class="redirect">
-                        <img src="/img/fervid_logo_light.svg" alt="test1">
-                    </a>
-                </div>
-                <div class="projects-item-caption">
-                    <p class="projects-item-caption-text">
-                        <a href="{{ url('/') }}" class="redirect">
-                            Lorem ipsum dolor1.
+            @foreach($projects as $project)
+                <div
+                    class="projects-item {{(($loop->count == 1 && $loop->iteration == 1) || ($loop->count < 4 && $loop->iteration == 3) || ($loop->count >= 5 && $loop->iteration % 5 == 0)) ? 'panorama' : ''}}"
+                    data-aos="zoom-in" data-aos-duration="350">
+                    <div class="projects-item-img-container">
+                        <a href="{{  route('projects.view', [$project->id]) }}" class="redirect">
+                            @if($project->getMedia()->isNotEmpty())
+                                <img src="{{$project->getMedia()[0]->getUrl('big')}}" alt="{{$project->title}}">
+                            @else
+                                <img src="{{asset('/img/fervid_full_logo.svg')}}" alt="{{$project->title}}">
+                            @endif
                         </a>
-                    </p>
+                    </div>
+                    <div class="projects-item-caption">
+                        <p class="projects-item-caption-text">
+                            <a href="{{ route('projects.view', [$project->id]) }}" class="redirect">
+                                {{$project->title}}
+                            </a>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="projects-item bottom-small" data-aos="zoom-in" data-aos-duration="350">
-                <div class="projects-item-img-container">
-                    <a href="{{ url('/') }}" class="redirect">
-                        <img src="/img/fervid_logo_light.svg" alt="test2">
-                    </a>
-                </div>
-                <div class="projects-item-caption">
-                    <p class="projects-item-caption-text">
-                        <a href="{{ url('/') }}" class="redirect">
-                            Lorem ipsum dolor2.
-                        </a>
-                    </p>
-                </div>
-            </div>
-            <div class="projects-item top-small" data-aos="zoom-in" data-aos-duration="350">
-                <div class="projects-item-img-container">
-                    <a href="{{ url('/') }}" class="redirect">
-                        <img src="/img/fervid_logo_light.svg" alt="test1">
-                    </a>
-                </div>
-                <div class="projects-item-caption">
-                    <p class="projects-item-caption-text">
-                        <a href="{{ url('/') }}" class="redirect">
-                            Lorem ipsum dolor3.
-                        </a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="projects-item bottom-bigger" data-aos="zoom-in" data-aos-duration="350">
-                <div class="projects-item-img-container">
-                    <a href="{{ url('/') }}" class="redirect">
-                        <img src="/img/fervid_logo_light.svg" alt="test1">
-                    </a>
-                </div>
-                <div class="projects-item-caption">
-                    <p class="projects-item-caption-text">
-                        <a href="{{ url('/') }}" class="redirect">
-                            Lorem ipsum dolor4.
-                        </a>
-                    </p>
-                </div>
-            </div>
-            <div class="projects-item single-panorama" data-aos="zoom-in" data-aos-duration="350">
-                <div class="projects-item-img-container">
-                    <a href="{{ url('/') }}" class="redirect">
-                        <img src="/img/fervid_logo_light.svg" alt="test1">
-                    </a>
-                </div>
-                <div class="projects-item-caption">
-                    <p class="projects-item-caption-text">
-                        <a href="{{ url('/') }}" class="redirect">
-                            Lorem ipsum dolor5.
-                        </a>
-                    </p>
-                </div>
-            </div>
+            @endforeach
         </section>
 
         <section class="page-text-separator">
@@ -118,7 +81,7 @@
         </section>
 
         <section class="projects">
-            <div class="projects-item top-bigger" data-aos="zoom-in" data-aos-duration="350">
+            <div class="projects-item" data-aos="zoom-in" data-aos-duration="350">
                 <div class="projects-item-img-container">
                     <img src="/img/fervid_logo_light.svg" alt="test1">
                 </div>
@@ -128,7 +91,7 @@
                     </p>
                 </div>
             </div>
-            <div class="projects-item bottom-small">
+            <div class="projects-item">
                 <div class="projects-item-img-container" data-aos="zoom-in" data-aos-duration="350">
                     <img src="/img/fervid_logo_light.svg" alt="test2">
                 </div>
@@ -138,7 +101,7 @@
                     </p>
                 </div>
             </div>
-            <div class="projects-item top-small">
+            <div class="projects-item">
                 <div class="projects-item-img-container" data-aos="zoom-in" data-aos-duration="350">
                     <img src="/img/fervid_logo_light.svg" alt="test1">
                 </div>
@@ -149,7 +112,7 @@
                 </div>
             </div>
 
-            <div class="projects-item bottom-bigger">
+            <div class="projects-item">
                 <div class="projects-item-img-container" data-aos="zoom-in" data-aos-duration="350">
                     <img src="/img/fervid_logo_light.svg" alt="test1">
                 </div>
@@ -159,7 +122,7 @@
                     </p>
                 </div>
             </div>
-            <div class="projects-item single-panorama" data-aos="zoom-in" data-aos-duration="350">
+            <div class="projects-item panorama" data-aos="zoom-in" data-aos-duration="350">
                 <div class="projects-item-img-container">
                     <img src="/img/fervid_logo_light.svg" alt="test1">
                 </div>

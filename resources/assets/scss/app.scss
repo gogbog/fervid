@@ -7,6 +7,8 @@ html {
     @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,500,600,700,800,900&display=swap');
     @import url('https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined');
     @import "~@fortawesome/fontawesome-free/css/all.min.css";
+    @import "~@glidejs/glide/src/assets/sass/glide.core";
+    @import "~@glidejs/glide/src/assets/sass/glide.theme";
     @import "~aos/dist/aos.css";
 
     $fa-font-path: '../webfonts';
@@ -49,7 +51,7 @@ html {
     $transition-slow: all 0.5s ease-in-out;
 
     //Shadows
-    $small-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.175);
+    $small-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.1);
 
     @import "mixins";
 

@@ -80,27 +80,28 @@
                 </div>
                 <ul class="navigation-links-list">
                     <li class="navigation-links-list-item">
-                        <a href="{{ url('/') }}" class="redirect {{Route::currentRouteName('projects') ? 'active' : ''}}">Projects</a>
+                        <a href="{{ url('/projects') }}"
+                           class="redirect {{Route::currentRouteName() == 'projects.index' ? 'active' : ''}}">Projects</a>
                     </li>
                     <li class="navigation-links-list-item">
                         <a href="{{ url('/services') }}"
-                           class="redirect {{Route::currentRouteName('services') ? 'active' : ''}}">Services</a>
+                           class="redirect {{Route::currentRouteName() == 'services.index' ? 'active' : ''}}">Services</a>
                     </li>
                     <li class="navigation-links-list-item">
                         <a href="{{ url('/development-land') }}"
-                           class="redirect {{Route::currentRouteName('development') ? 'active' : ''}}">Development & Land</a>
+                           class="redirect {{Route::currentRouteName() == 'development.index' ? 'active' : ''}}">Development & Land</a>
                     </li>
                     <li class="navigation-links-list-item">
                         <a href="{{ url('/finance-funding') }}"
-                           class="redirect {{Route::currentRouteName('finance') ? 'active' : ''}}">Finance & Funding</a>
+                           class="redirect {{Route::currentRouteName() == 'finance.index' ? 'active' : ''}}">Finance & Funding</a>
                     </li>
                     <li class="navigation-links-list-item">
                         <a href="{{ url('/about') }}"
-                           class="redirect {{Route::currentRouteName('about') ? 'active' : ''}}">About</a>
+                           class="redirect {{Route::currentRouteName() == 'about.index' ? 'active' : ''}}">About</a>
                     </li>
                     <li class="navigation-links-list-item">
                         <a href="{{ url('/contact') }}"
-                           class="redirect {{Route::currentRouteName('contact') ? 'active' : ''}}">Contact</a>
+                           class="redirect {{Route::currentRouteName() == 'contact.index' ? 'active' : ''}}">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -147,28 +148,28 @@
         <div class="footer-links">
             <ul class="footer-links-list">
                 <li class="footer-links-list-item">
-                    <a href="{{ url('/') }}"
-                       class="redirect {{Route::currentRouteName('projects') ? 'active' : ''}}">Projects</a>
+                    <a href="{{ url('/projects') }}"
+                       class="redirect {{Route::currentRouteName() == 'projects.index' ? 'active' : ''}}">Projects</a>
                 </li>
                 <li class="footer-links-list-item">
                     <a href="{{ url('/services') }}"
-                       class="redirect {{Route::currentRouteName('services') ? 'active' : ''}}">Services</a>
+                       class="redirect {{Route::currentRouteName() == 'services.index' ? 'active' : ''}}">Services</a>
                 </li>
                 <li class="footer-links-list-item">
                     <a href="{{ url('/development-land') }}"
-                       class="redirect {{Route::currentRouteName('development') ? 'active' : ''}}">Development & Land</a>
+                       class="redirect {{Route::currentRouteName() == 'services.index' ? 'active' : ''}}">Development & Land</a>
                 </li>
                 <li class="footer-links-list-item">
                     <a href="{{ url('/finance-funding') }}"
-                       class="redirect {{Route::currentRouteName('finance') ? 'active' : ''}}">Finance & Funding</a>
+                       class="redirect {{Route::currentRouteName() == 'services.index' ? 'active' : ''}}">Finance & Funding</a>
                 </li>
                 <li class="footer-links-list-item">
                     <a href="{{ url('/about') }}"
-                       class="redirect {{Route::currentRouteName('about') ? 'active' : ''}}">About</a>
+                       class="redirect {{Route::currentRouteName() == 'services.index' ? 'active' : ''}}">About</a>
                 </li>
                 <li class="footer-links-list-item">
                     <a href="{{ url('/contact') }}"
-                       class="redirect {{Route::currentRouteName('contact') ? 'active' : ''}}">Contact</a>
+                       class="redirect {{Route::currentRouteName() == 'services.index' ? 'active' : ''}}">Contact</a>
                 </li>
             </ul>
         </div>

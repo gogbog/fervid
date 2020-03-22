@@ -1,5 +1,7 @@
 console.log(`I ❤ Fervid!`);
 window.AOS = require('aos');
+window.Rellax = require('rellax');
+window.Glide = require('@glidejs/glide/dist/glide.min');
 
 // -----------------------------------------
 //             PAGE LOADER
@@ -58,9 +60,9 @@ if (document.body.contains(checkbox)) {
             trans();
             document.documentElement.setAttribute('data-theme', 'dark');
             logos.forEach((item) => {
-                if (item.classList.contains('light-logo')){
+                if (item.classList.contains('light-logo')) {
                     item.classList.add('visible');
-                }else {
+                } else {
                     item.classList.remove('visible');
                 }
             });
@@ -72,9 +74,9 @@ if (document.body.contains(checkbox)) {
             trans();
             document.documentElement.setAttribute('data-theme', 'light');
             logos.forEach((item) => {
-                if (item.classList.contains('dark-logo')){
+                if (item.classList.contains('dark-logo')) {
                     item.classList.add('visible');
-                }else {
+                } else {
                     item.classList.remove('visible');
                 }
             });
@@ -131,7 +133,7 @@ const closeMobileNav = () => {
 navOpenBtn.addEventListener('click', openMobileNav);
 navCloseBtn.addEventListener('click', closeMobileNav);
 window.addEventListener('resize', () => {
-    if (mobileNav.classList.contains('active') && window.innerWidth > 1100){
+    if (mobileNav.classList.contains('active') && window.innerWidth > 1100) {
         closeMobileNav();
     }
 });
@@ -140,6 +142,48 @@ window.addEventListener('resize', () => {
 //             ANIMATE ON SCROLL
 // -----------------------------------------
 AOS.init();
+
+// -----------------------------------------
+//             PARALLAX EFFECT
+// -----------------------------------------
+const parallaxElements = document.querySelectorAll('.rellax');
+
+if (parallaxElements.length > 0){
+    new Rellax('.rellax', {
+        speed: -2,
+        vertical: true,
+        horizontal: false
+    });
+}
+
+// -----------------------------------------
+//             GALLERY
+// -----------------------------------------
+const glide = document.querySelector('.glide');
+const singleSlider = document.querySelector('.non-slide-able');
+
+if (glide && !singleSlider) {
+    console.log('slider');
+    new Glide('.glide', {
+        type: 'carousel',
+        autoplay: 5000,
+        hoverpause: true,
+        keyboard: true,
+        rewind: true,
+        dragThreshold: 1,
+        gap: 10,
+        startAt: 0,
+        perView: 1
+    }).mount();
+}else if (glide && singleSlider) {
+    console.log('no slider');
+
+    new Glide('.non-slide-able', {
+        type: 'carousel',
+        startAt: 0,
+        perView: 1
+    }).mount();
+}
 
 // -----------------------------------------
 //             BACK TO TOP

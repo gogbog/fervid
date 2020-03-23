@@ -34,7 +34,7 @@ class StoreProjectRequest extends FormRequest {
         $project = request('project');
 
         if (!empty($project)) {
-            $rules['slug'] = 'nullable|string|unique:projects,slug,' . $project->id;
+            $rules['slug'] = 'nullable|string|unique:projects,slug,' . $project;
         } else {
             $rules['slug'] = 'nullable|string|unique:projects,slug';
         }

@@ -34,25 +34,30 @@ class ProjectsController extends BaseAdministrationController {
         $columns = [
             'id' => ['title' => trans('projects::admin.id')],
             'title' => ['title' => trans('projects::admin.title')],
-//            'description' => ['title' => trans('projects::admin.description')],
             'active' => ['title' => trans('projects::admin.visible')],
             'action' => ['title' => trans('projects::admin.action')]
         ];
 
         $table = new AdministrationDatatable($datatable);
-        $table->query(Project::query());
+        $table->query(Project::withTrashed());
         $table->columns($columns);
 
-        $table->addColumn('active', function ($article) {
-            return AdministrationField::switch('active', $article);
+        $table->addColumn('active', function ($project) {
+            return AdministrationField::switch('active', $project);
         });
 
 
-        $table->addColumn('action', function ($article) {
-            $action = AdministrationField::edit(Administration::route('projects.edit', $article->id));
+        $table->addColumn('action', function ($project) {
+            $action = AdministrationField::edit(Administration::route('projects.edit', $project->id));
 
-            $action .= AdministrationField::media($article, ['project_images']);
-            $action .= AdministrationField::delete(Administration::route('projects.destroy', $article->id));
+            $action .= AdministrationField::media($project, ['project_images']);
+
+            if (empty($project->deleted_at)) {
+                $action .= AdministrationField::delete(Administration::route('projects.destroy', $project->id));
+            } else {
+                $action .= AdministrationField::restore(Administration::route('projects.destroy', $project->id));
+            }
+
 
             return $action;
         });
@@ -127,11 +132,15 @@ class ProjectsController extends BaseAdministrationController {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Project $project
+     * @param $project_id
      * @return Factory|View
      */
-    public function edit(Project $project) {
+    public function edit($project_id) {
+        $project = Project::withTrashed()->where('id', $project_id)->first();
 
+        if (empty($project)) {
+            return abort(404);
+        }
         $form = new AdministrationForm();
         $form->route(Administration::route('projects.store'));
         $form->model($project);
@@ -154,14 +163,19 @@ class ProjectsController extends BaseAdministrationController {
     /**
      * Update the specified resource in storage.
      *
-     * @param Project $project
+     * @param $project_id
      * @param StoreProjectRequest $request
      * @return Response
      * @throws DiskDoesNotExist
      * @throws FileDoesNotExist
      * @throws FileIsTooBig
      */
-    public function update(Project $project, StoreProjectRequest $request) {
+    public function update($project_id, StoreProjectRequest $request) {
+        $project = Project::withTrashed()->where('id', $project_id)->first();
+
+        if (empty($project)) {
+            return abort(404);
+        }
 
         $project->fill($request->validated());
         $project->save();
@@ -187,9 +201,13 @@ class ProjectsController extends BaseAdministrationController {
      */
     public function destroy($id) {
 
-        $project = Project::where('id', $id)->first();
+        $project = Project::withTrashed()->where('id', $id)->first();
+        if (!empty($project->deleted_at)) {
+            $project->restore();
+        } else {
+            $project->delete();
+        }
 
-        $project->delete();
 
         return response()->json();
     }

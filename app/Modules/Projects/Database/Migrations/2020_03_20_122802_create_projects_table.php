@@ -16,12 +16,12 @@ class CreateProjectsTable extends Migration {
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
-            NestedSet::columns($table);
             $table->string('meta_title')->nullable();
             $table->string('meta_description', 255)->nullable();
             $table->string('meta_keywords')->nullable();
             $table->string('slug')->unique();
-            $table->boolean('active')->default(false);
+            NestedSet::columns($table);
+            $table->softDeletes();$table->boolean('active')->default(false);
             $table->timestamps();
         });
     }

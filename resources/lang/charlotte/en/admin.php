@@ -32,6 +32,7 @@ return [
     //DASHBOARD
     'see_details' => 'See Details',
     'administrators' => 'Administrators',
+    'static_blocks' => 'Static Blocks',
     'settings_menu' => 'Settings',
 
     //EXAMPLE MODULES
@@ -42,6 +43,7 @@ return [
     'blog' => 'Blog',
 
     //FORMS
+    'id' => 'ID',
     'title' => 'Title',
     'description' => 'Description',
     'active' => 'Active',
@@ -53,6 +55,8 @@ return [
     'change' => 'Change',
     'remove' => 'Remove',
     'submit' => 'Save',
+    'content' => 'Content',
+    'action' => 'Action',
 
     //DATATABLE
     'sure' => 'Are you sure?',
@@ -74,6 +78,8 @@ return [
     'success_create_admin' => 'Administrator created successfully',
     'success_update_admin' => 'Administrator updated successfully',
     'settings_updated' => 'Settings updated successfully',
+    'success_update' => 'Successfully updated!',
+    'success_create' => 'Successfully created!',
 
     //LANGUAGES
     'en' => 'English',

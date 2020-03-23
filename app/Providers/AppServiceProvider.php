@@ -3,9 +3,6 @@
 namespace App\Providers;
 
 use App\Modules\Projects\Models\Project;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider {
@@ -15,7 +12,25 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        $this->bindOrFail(Project::class, 'project');
+
+        $this->app->bind(Project::class, function () {
+            $model_id = (int)request()->route('project');
+            $class = new Project();
+
+            if (empty($model_id)) {
+                $model_id = request()->route('project_slug');
+                $model = ($class)->where('slug', $model_id)->first();
+
+                if (empty($model)) {
+                    return abort(404);
+                }
+
+                return $model;
+            } else {
+               return ($class)->findOrFail($model_id);
+            }
+        });
+
     }
 
     /**
@@ -37,8 +52,11 @@ class AppServiceProvider extends ServiceProvider {
             }
 
             $class = new $class;
-            $model = ($class)->findOrFail($model_id);
-
+            $model = ($class)->where('slug', $model_id)->first();
+            if (empty($model)) {
+                return abort(404);
+            }
+dd($model);
             return $model;
         });
     }

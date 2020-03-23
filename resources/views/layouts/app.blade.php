@@ -46,12 +46,15 @@
     <div class="container">
         <div class="navigation">
             <div class="navigation-logo">
-                <img src="{{$logo_light ? $logo_light : '/img/fervid_logo_light.svg'}}"
-                     alt="{{ config('app.name', 'Fervid') }}"
-                     class="navigation-logo-img logo-img light-logo {{ $isDark ? 'visible' : '' }}">
-                <img src="{{$logo_dark ? $logo_dark : '/img/fervid_logo_dark.svg'}}"
-                     alt="{{ config('app.name', 'Fervid') }}"
-                     class="navigation-logo-img logo-img dark-logo {{ !$isDark ? 'visible' : '' }}">
+                <a href="{{ url('/projects') }}"
+                   class="redirect">
+                    <img src="{{$logo_light ? $logo_light : '/img/fervid_logo_light.svg'}}"
+                         alt="{{ config('app.name', 'Fervid') }}"
+                         class="navigation-logo-img logo-img light-logo {{ $isDark ? 'visible' : '' }}">
+                    <img src="{{$logo_dark ? $logo_dark : '/img/fervid_logo_dark.svg'}}"
+                         alt="{{ config('app.name', 'Fervid') }}"
+                         class="navigation-logo-img logo-img dark-logo {{ !$isDark ? 'visible' : '' }}">
+                </a>
             </div>
             <div class="navigation-toggle">
                 <button class="navigation-toggle-btn">
@@ -89,11 +92,13 @@
                     </li>
                     <li class="navigation-links-list-item">
                         <a href="{{ url('/development-land') }}"
-                           class="redirect {{Route::currentRouteName() == 'development.index' ? 'active' : ''}}">Development & Land</a>
+                           class="redirect {{Route::currentRouteName() == 'development.index' ? 'active' : ''}}">Development
+                            & Land</a>
                     </li>
                     <li class="navigation-links-list-item">
                         <a href="{{ url('/finance-funding') }}"
-                           class="redirect {{Route::currentRouteName() == 'finance.index' ? 'active' : ''}}">Finance & Funding</a>
+                           class="redirect {{Route::currentRouteName() == 'finance.index' ? 'active' : ''}}">Finance &
+                            Funding</a>
                     </li>
                     <li class="navigation-links-list-item">
                         <a href="{{ url('/about') }}"
@@ -139,10 +144,12 @@
     <div class="container">
         <div class="footer-logo">
             <div class="footer-logo-img">
-                <img src="{{$logo_light ? $logo_light : '/img/fervid_logo_light.svg'}}" alt="{{ config('app.name', 'Fervid') }}">
+                <img src="{{$logo_light ? $logo_light : '/img/fervid_logo_light.svg'}}"
+                     alt="{{ config('app.name', 'Fervid') }}">
             </div>
             <div class="footer-logo-brand">
-                <img src="{{$brand_logo ? $brand_logo : '/img/fervid_text_logo.svg'}}" alt="{{ config('app.name', 'Fervid') }}">
+                <img src="{{$brand_logo ? $brand_logo : '/img/fervid_text_logo.svg'}}"
+                     alt="{{ config('app.name', 'Fervid') }}">
             </div>
         </div>
         <div class="footer-links">
@@ -157,11 +164,13 @@
                 </li>
                 <li class="footer-links-list-item">
                     <a href="{{ url('/development-land') }}"
-                       class="redirect {{Route::currentRouteName() == 'services.index' ? 'active' : ''}}">Development & Land</a>
+                       class="redirect {{Route::currentRouteName() == 'services.index' ? 'active' : ''}}">Development &
+                        Land</a>
                 </li>
                 <li class="footer-links-list-item">
                     <a href="{{ url('/finance-funding') }}"
-                       class="redirect {{Route::currentRouteName() == 'services.index' ? 'active' : ''}}">Finance & Funding</a>
+                       class="redirect {{Route::currentRouteName() == 'services.index' ? 'active' : ''}}">Finance &
+                        Funding</a>
                 </li>
                 <li class="footer-links-list-item">
                     <a href="{{ url('/about') }}"

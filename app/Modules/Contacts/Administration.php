@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Index;
+namespace App\Modules\Contacts;
 
 
 use App\Modules\Depos\Http\Controllers\DeposController;
@@ -29,24 +29,17 @@ class Administration implements Structure
 
     public function settings($module, $form, $form_model)
     {
-        $form->add($module . '_meta_title', 'text', [
-            'title' => trans('index::admin.meta_title'),
+        $form->add($module . '_email', 'text', [
+            'title' => trans('contacts::admin.email'),
             'model' => $form_model
 
         ]);
 
-        $form->add($module . '_meta_description', 'text', [
-            'title' => trans('index::admin.meta_description'),
+        $form->add($module . '_phone', 'text', [
+            'title' => trans('contacts::admin.phone'),
             'model' => $form_model
 
         ]);
-
-        $form->add($module . '_meta_keywords', 'text', [
-            'title' => trans('index::admin.meta_keywords'),
-            'model' => $form_model
-
-        ]);
-
 
     }
 }

@@ -33,21 +33,18 @@ class Administration implements Structure {
     public function settings($module, $form, $form_model) {
         $form->add($module . '_meta_title', 'text', [
             'title' => trans('index::admin.meta_title'),
-            'translate' => true,
             'model' => $form_model
 
         ]);
 
         $form->add($module . '_meta_description', 'text', [
             'title' => trans('index::admin.meta_description'),
-            'translate' => true,
             'model' => $form_model
 
         ]);
 
         $form->add($module . '_meta_keywords', 'text', [
             'title' => trans('index::admin.meta_keywords'),
-            'translate' => true,
             'model' => $form_model
 
         ]);

@@ -31,7 +31,7 @@
 
         <section class="page-text-separator">
             @if(\Charlotte\Administration\Helpers\StaticBlock::get('project_block_1'))
-                <div class="page-text-separator-content" data-aos="fade-in" data-aos-duration="350">
+                <div class="page-text-separator-content" data-aos="fade-in" data-aos-duration="750">
                     {!! \Charlotte\Administration\Helpers\StaticBlock::get('project_block_1') !!}
                 </div>
             @endif
@@ -65,7 +65,7 @@
                 @endphp
                 <div
                     class="projects-item {{($full_width) ? 'panorama' : ''}}"
-                    data-aos="zoom-in" data-aos-duration="350">
+                    data-aos="fade-in" data-aos-duration="750">
                     <div class="projects-item-img-container">
                         <a href="{{  route('projects.view', [$project->slug]) }}" class="redirect">
                             @if($project->getMedia()->isNotEmpty())
@@ -77,9 +77,7 @@
                     </div>
                     <div class="projects-item-caption">
                         <p class="projects-item-caption-text">
-                            <a href="{{ route('projects.view', [$project->slug]) }}" class="redirect">
-                                {{$project->title}}
-                            </a>
+                            {{$project->title}}
                         </p>
                     </div>
                 </div>
@@ -87,7 +85,7 @@
                 @if($loop->count > 1 && $loop->iteration % 5 == 0)
                     <section class="page-text-separator">
                         @if(\Charlotte\Administration\Helpers\StaticBlock::get('project_block_'.$static_block_index))
-                            <div class="page-text-separator-content" data-aos="fade-in" data-aos-duration="350">
+                            <div class="page-text-separator-content" data-aos="fade-in" data-aos-duration="750">
                                 {!! \Charlotte\Administration\Helpers\StaticBlock::get('project_block_'.$static_block_index) !!}
                             </div>
                         @endif
@@ -97,8 +95,8 @@
                     @endphp
                 @endif
                 @php
-                $projects_left--;
-                $full_width = false;
+                    $projects_left--;
+                    $full_width = false;
                 @endphp
             @endforeach
         </section>

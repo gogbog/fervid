@@ -19,7 +19,8 @@ a {
 .page-view-header {
     transition: $transition-mid;
     background: $bg;
-    height: 40vh;
+    height: 30vh;
+    max-height: 20rem;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -31,22 +32,15 @@ a {
     }
 
     @media screen and (max-width: 1100px) {
-        height: 35vh;
-    }
-
-    @media screen and (max-width: 600px) {
-        height: 40vh;
+        max-height: 15rem;
     }
 }
 
 .page-view-content {
-    z-index: 2;
     background: $bg;
     padding: 2rem;
     width: 75%;
     margin: 0 auto;
-    transform: translateY(-15vh);
-    box-shadow: $small-shadow;
 
     &-title {
         display: flex;
@@ -76,8 +70,8 @@ a {
             margin: 0;
         }
         &__slide {
-            max-height: 80vh;
-            height: auto;
+            max-height: 40rem;
+            height: 60vh;
             & > img {
                 width: 100%;
                 height: 100%;
@@ -125,17 +119,9 @@ a {
     }
 
     @media screen and (max-width: 1100px) {
-        width: 80%;
-        margin: 0 auto;
-        transform: translateY(-10vh);
-    }
-
-    @media screen and (max-width: 600px) {
-        transform: translateY(0);
         padding: 2.5rem 0;
         width: 100%;
         margin: 0;
-
         .glide{
             &__slide{
                 height: auto;
@@ -171,6 +157,7 @@ a {
         transition: $transition-mid;
         flex: 1;
         height: 50vh;
+        max-height: 40rem;
         background: $primary-font;
 
         &-img {
@@ -187,7 +174,7 @@ a {
             top: 50%;
             left: 0;
             transform: translateY(-50%);
-            background: $bg;
+            background: rgba($bg, 0.8);
             padding: 1.75rem 2rem;
             flex: 0 0 100%;
             order: 1;
@@ -205,6 +192,7 @@ a {
             flex: 0 0 100%;
             order: 0;
             height: 30vh;
+            max-height: 30rem;
             background: $primary-font;
         }
     }
@@ -223,7 +211,9 @@ a {
         }
 
         &-show {
-            height: 50vh;
+            height: 35vh;
+            max-height: 20rem;
+            min-height: 17.5rem;
         }
     }
 }
@@ -253,15 +243,14 @@ a {
 
 .projects {
     display: grid;
-    grid-gap: 1rem 2rem;
+    grid-gap: 2rem;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: minmax(1rem, auto);
 
     &-item {
-        display: grid;
-        grid-template-rows: 1fr auto;
-        max-height: 35rem;
+        max-height: 30rem;
         height: 100%;
+        position: relative;
 
         &-img-container {
             height: 100%;
@@ -278,13 +267,25 @@ a {
         }
 
         &-caption {
+            transition: $transition-mid;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba($bg, 0.9);
+            pointer-events: none;
             &-text {
-                text-align: center;
-                font-size: 1rem;
+                font-size: 1.5rem;
                 font-weight: 400;
                 letter-spacing: 0.125rem;
                 text-transform: uppercase;
-                margin: 2rem 1rem 1rem 1rem;
             }
         }
 
@@ -292,8 +293,12 @@ a {
             .projects-item-img-container {
                 img {
                     transition: $transition-mid;
-                    transform: scale(1.05);
+                    transform: scale(1.025);
                 }
+            }
+            .projects-item-caption{
+                transition: $transition-mid;
+                opacity: 1;
             }
         }
 
@@ -310,10 +315,9 @@ a {
         grid-auto-rows: minmax(1rem, auto);
         &-item {
             max-height: 25rem;
-            height: 100%;
             &-caption {
                 &-text {
-                    font-size: 0.9rem;
+                    font-size: 1rem;
                 }
             }
         }
@@ -321,7 +325,6 @@ a {
     @media screen and (max-width: 800px) {
         grid-template-columns: 1fr;
         &-item {
-            //max-height: 20rem;
             &.panorama{
                 grid-column-end: span 1;
             }

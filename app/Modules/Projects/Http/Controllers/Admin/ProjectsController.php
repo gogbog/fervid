@@ -17,9 +17,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
-use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist;
-use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist;
-use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig;
 use Yajra\DataTables\DataTables;
 
 class ProjectsController extends BaseAdministrationController {
@@ -39,7 +36,7 @@ class ProjectsController extends BaseAdministrationController {
         ];
 
         $table = new AdministrationDatatable($datatable);
-        $table->query(Project::withTrashed());
+        $table->query(Project::withTrashed()->reversed());
         $table->columns($columns);
 
         $table->addColumn('active', function ($project) {

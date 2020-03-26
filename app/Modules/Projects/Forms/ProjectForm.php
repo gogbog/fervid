@@ -38,13 +38,13 @@ class ProjectForm extends AdminForm
             $filename = $this->model->getFirstMedia()->getFullUrl('big');
         }
 
-        $this->add('file', 'file', [
-            'title' => trans('projects::admin.file'),
-            'value' => $filename,
-            'attr' => [
-//                'required' => 'required'
-            ]
-        ]);
+//        $this->add('file', 'file', [
+//            'title' => trans('projects::admin.file'),
+//            'value' => $filename,
+//            'attr' => [
+////                'required' => 'required'
+//            ]
+//        ]);
 
         $this->add('active', 'switch', [
             'title' => trans('projects::admin.active'),

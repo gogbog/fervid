@@ -106,9 +106,6 @@ class ProjectsController extends BaseAdministrationController {
      *
      * @param StoreProjectRequest $request
      * @return Response
-     * @throws DiskDoesNotExist
-     * @throws FileDoesNotExist
-     * @throws FileIsTooBig
      */
     public function store(StoreProjectRequest $request) {
         $project = new Project();
@@ -116,14 +113,14 @@ class ProjectsController extends BaseAdministrationController {
         $project->save();
 
 
-        if (!empty($request->file)) {
-            //delete all previous media
-            $old_media = $project->getMedia();
-            foreach ($old_media as $image) {
-                $image->delete();
-            }
-            $project->addMedia($request->file)->toMediaCollection();
-        }
+//        if (!empty($request->file)) {
+//            //delete all previous media
+//            $old_media = $project->getMedia();
+//            foreach ($old_media as $image) {
+//                $image->delete();
+//            }
+//            $project->addMedia($request->file)->toMediaCollection();
+//        }
 
         return redirect(Administration::route('projects.index'))->withSuccess([trans('administration::admin.success_create')]);
     }
@@ -166,9 +163,6 @@ class ProjectsController extends BaseAdministrationController {
      * @param $project_id
      * @param StoreProjectRequest $request
      * @return Response
-     * @throws DiskDoesNotExist
-     * @throws FileDoesNotExist
-     * @throws FileIsTooBig
      */
     public function update($project_id, StoreProjectRequest $request) {
         $project = Project::withTrashed()->where('id', $project_id)->first();
@@ -180,14 +174,14 @@ class ProjectsController extends BaseAdministrationController {
         $project->fill($request->validated());
         $project->save();
 
-        if (!empty($request->file)) {
-            //delete all previous media
-            $old_media = $project->getMedia();
-            foreach ($old_media as $image) {
-                $image->delete();
-            }
-            $project->addMedia($request->file)->toMediaCollection();
-        }
+//        if (!empty($request->file)) {
+//            //delete all previous media
+//            $old_media = $project->getMedia();
+//            foreach ($old_media as $image) {
+//                $image->delete();
+//            }
+//            $project->addMedia($request->file)->toMediaCollection();
+//        }
 
         return redirect(Administration::route('projects.index'))->withSuccess([trans('administration::admin.success_update')]);
     }

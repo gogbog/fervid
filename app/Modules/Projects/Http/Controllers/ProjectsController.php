@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class ProjectsController extends Controller
 {
     public function index() {
-        $projects = Project::with(['media'])->reversed()->get();
+        $projects = Project::with(['media'])->active()->reversed()->get();
         return view('projects::front.index', compact('projects'));
     }
 

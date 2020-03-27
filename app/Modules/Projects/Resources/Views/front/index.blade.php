@@ -68,8 +68,8 @@
                     data-aos="fade-in" data-aos-duration="750">
                     <div class="projects-item-img-container">
                         <a href="{{  route('projects.view', [$project->slug]) }}" class="redirect">
-                            @if($project->getMedia()->isNotEmpty())
-                                <img src="{{$project->getMedia()[0]->getUrl('big')}}" alt="{{$project->title}}">
+                            @if($project->getMedia('project_images')->isNotEmpty())
+                                <img src="{{$project->getMedia('project_images')[0]->getUrl('big')}}" alt="{{$project->title}}">
                             @else
                                 <img src="{{asset('/img/fervid_full_logo.svg')}}" alt="{{$project->title}}">
                             @endif

@@ -25,6 +25,8 @@
     $facebook = \Charlotte\Administration\Helpers\Settings::get('facebook');
     $instagram = \Charlotte\Administration\Helpers\Settings::get('instagram');
     $linkedin = \Charlotte\Administration\Helpers\Settings::get('linkedin');
+    $phone = \Charlotte\Administration\Helpers\Settings::get('contacts_phone');
+    $email = \Charlotte\Administration\Helpers\Settings::get('contacts_email');
     $logo_light = \Charlotte\Administration\Helpers\Settings::getFile('logo_light');
     $logo_dark = \Charlotte\Administration\Helpers\Settings::getFile('logo_dark');
     $brand_logo = \Charlotte\Administration\Helpers\Settings::getFile('brand_logo');
@@ -201,6 +203,24 @@
                 <div class="footer-social-item">
                     <a href="{{$linkedin}}">
                         <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            @endif
+        </div>
+        <div class="footer-quick-contact">
+            @if($phone)
+                <div class="footer-quick-contact-item">
+                    <a href="tel:{{$phone}}">
+                        <i class="fas fa-phone"></i>
+                        <span>{{$phone}}</span>
+                    </a>
+                </div>
+            @endif
+            @if($email)
+                <div class="footer-quick-contact-item">
+                    <a href="mailto:{{$email}}">
+                        <i class="fas fa-envelope"></i>
+                        <span>{{$email}}</span>
                     </a>
                 </div>
             @endif

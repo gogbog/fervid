@@ -9,8 +9,8 @@
     @if(!empty($project))
         <div class="page">
             <section class="page-view-header">
-                @if($project->getMedia()->isNotEmpty())
-                    <img src="{{$project->getMedia()[0]->getUrl('big')}}"
+                @if($project->getMedia('project_images')->isNotEmpty())
+                    <img src="{{$project->getMedia('project_images')[0]->getUrl('big')}}"
                          alt="{{$project->title}}"
                          class="page-view-header-img rellax">
                 @else
